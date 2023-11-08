@@ -14,6 +14,16 @@ to install either
 
 ![screenshot](screenshot.png)
 
+## Development
+### Setup
+1. clone the repository
+2. using a nix-shell to setup the development environment
+    1. install [nix](https://nixos.org/download.html)
+    2. open a web-ext shell installed with **`nix-shell -p nodePackages.web-ext`**
+3. change the directory to src in the repository
+4. run `web-ext run` to start firefox with the addon installed
+5. open the [scoreboard](https://scoreboard.sec.in.tum.de/) in the browser and login
+
 ## Build a new version
 ### Setup
 You need an API key from [addons.mozilla.org](https://addons.mozilla.org/en-US/developers/addon/api/key/) and a github token with the `repo` scope. Then you need to add them as secrets to your repository with the names **`MOZILLA_ISSUER`** and **`MOZILLA_SECRET`** for the mozilla key and **`GITHUB_TOKEN`** for the github token.
