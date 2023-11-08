@@ -2,8 +2,8 @@ name: Build and Sign Firefox Extension
 
 on:
   push:
-    branches:
-      - main  # oder den Branch deiner Wahl
+    tags:
+      - v*
 
 jobs:
   build-sign-extension:
