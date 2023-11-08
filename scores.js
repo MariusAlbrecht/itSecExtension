@@ -7,7 +7,8 @@ var score
 for (var i = 0, row; row = table.rows[i]; i++) {
     score = 0
     for (var j = 2, cell; cell = row.cells[j]; j++) {
-        score += parseInt(cell.title.split(".")[0])
+        var mbyANumber = parseInt(cell.title.split(".")[0])
+        score += isNaN(mbyANumber) ? 0 : mbyANumber
     }
     var elem = document.createElement("td");
     elem.style = "font-size: 1.3em; font-weight: bold; padding-left: 15px;"
