@@ -18,7 +18,7 @@ jobs:
 
     - name: Update version in manifest.json
       run: |
-        VERSION=${GITHUB_REF#refs/tags/}
+        VERSION=${GITHUB_REF#refs/tags/v}
         jq --arg ver "$VERSION" '.version=$ver' manifest.json > temp.json && mv temp.json manifest.json
       shell: bash
 
