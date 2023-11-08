@@ -42,7 +42,7 @@ jobs:
       run: |
         VERSION=${GITHUB_REF#refs/tags/v}
         SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c 1-8)
-        mv build/ITSecScore.signed.xpi build/ITSecScore-${VERSION}-${SHORT_SHA}.xpi
+        mv build/ITSecScore.xpi build/ITSecScore-${VERSION}-${SHORT_SHA}.xpi
       shell: bash
 
     # Create a release
