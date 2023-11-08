@@ -3,36 +3,25 @@ name: Build and Sign Firefox Extension
 on:
   push:
     branches:
-      - main
+      - main  # oder den Branch deiner Wahl
 
 jobs:
-  build-and-sign:
+  build-sign-extension:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
+    - uses: actions/checkout@v2
 
-    - name: Pack Extension
-      uses: cardinalby/webext-buildtools-pack-extension-dir-action@v1
+    # Packen der Erweiterung
+    - uses: cardinalby/webext-buildtools-pack-extension-dir-action@v1
       with:
-        extensionDir: './'
+        extensionDir: 'extension'
         zipFilePath: 'build/extension.zip'
 
-    - name: Sign Extension
-      uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
+    # Signieren der Erweiterung
+    - uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
       with:
         zipFilePath: 'build/extension.zip'
         xpiFilePath: 'build/extension.signed.xpi'
         jwtIssuer: ${{ secrets.MOZILLA_ISSUER }}
         jwtSecret: ${{ secrets.MOZILLA_SECRET }}
 
-    - name: Upload Signed Extension as Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: signed-extension
-        path: 'build/extension.signed.xpi'
