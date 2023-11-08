@@ -8,7 +8,7 @@ for example a team has done two exercises. They were the first one to hand in th
 > With installing you're basically giving the code permission to be executed in your browser. I suggest you take a look before installing.
 
 to install either 
-- [install from file](https://extensionworkshop.com/documentation/publish/distribute-sideloading/#install-addon-from-file) with the `*.xpi` from the realease in the realeases
-- click the link for the `*.xpi` file under release. This should just ask to install the addon
+- [install from file](https://extensionworkshop.com/documentation/publish/distribute-sideloading/#install-addon-from-file) with the `*.xpi` from the realease in the sidebar
+- just click the `*.xpi` file in the release. This should just ask to install the addon
 
 ![screenshot](screenshot.png)
