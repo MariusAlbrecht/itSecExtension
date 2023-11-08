@@ -19,7 +19,7 @@ jobs:
     - name: Update version in manifest.json
       run: |
         VERSION=${GITHUB_REF#refs/tags/v}
-        jq --arg ver "$VERSION" '.version=$ver' manifest.json > temp.json && mv temp.json manifest.json
+        jq --arg ver "$VERSION" '.version=$ver' src/manifest.json > src/temp.json && mv src/temp.json src/manifest.json
       shell: bash
 
     # Packen der Erweiterung
