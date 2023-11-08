@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "ItSecScores",
-    "version": "1.0",
+    "version": "1.1",
     "description": "more precise scores for the scoreboard",
     "content_scripts": [
         {
