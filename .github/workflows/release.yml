@@ -16,6 +16,12 @@ jobs:
       with:
         node-version: '16'  # Setzt Node.js auf eine unterstützte Version
 
+    - name: Update version in manifest.json
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/}
+        jq --arg ver "$VERSION" '.version=$ver' manifest.json > temp.json && mv temp.json manifest.json
+      shell: bash
+
     # Packen der Erweiterung
     - uses: cardinalby/webext-buildtools-pack-extension-dir-action@v1
       with:
@@ -39,5 +45,5 @@ jobs:
     - uses: meeDamian/github-release@v1.0.0
       with:
         files: build/ITSecScore.signed.xpi
-        tag: ${{ github.sha }}
+        tag: ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
