@@ -37,17 +37,10 @@ jobs:
         jwtIssuer: ${{ secrets.MOZILLA_ISSUER }}
         jwtSecret: ${{ secrets.MOZILLA_SECRET }}
 
-    # Rename XPI file with version and short commit hash
-    - name: Rename XPI file with version and short commit hash
-      run: |
-        VERSION=${GITHUB_REF#refs/tags/v}
-        mv build/ITSecScore.xpi build/ITSecScore-${VERSION}.xpi
-      shell: bash
-
     # Create a release
     - uses: meeDamian/github-release@v1.0.0
       with:
-        files: build/ITSecScore-${VERSION}.xpi
+        files: build/ITSecScore.xpi
         tag: ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
         gzip: false
