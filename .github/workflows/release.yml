@@ -31,8 +31,13 @@ jobs:
         jwtIssuer: ${{ secrets.MOZILLA_ISSUER }}
         jwtSecret: ${{ secrets.MOZILLA_SECRET }}
 
-    # Hochladen der .xpi-Datei als Artifact
-    - uses: actions/upload-artifact@v3  # Aktualisiert auf die neueste Version
+    # ls von dem Ordner, in dem die .xpi-Datei erstellt wurde
+    - name: List build directory
+      run: ls build
+
+    # Create a release
+    - uses: meeDamian/github-release@v1.0.0
       with:
-        name: signed-extension
-        path: build/ITSecScore.signed.xpi
+        files: build/ITSecScore.signed.xpi
+        tag: ${{ github.sha }}
+        token: ${{ secrets.GITHUB_TOKEN }}
