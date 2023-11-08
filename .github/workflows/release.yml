@@ -32,7 +32,7 @@ jobs:
     - uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
       with:
         zipFilePath: 'build/ITSecScore.zip'
-        xpiFilePath: 'build/ITSecScore.signed.xpi'
+        xpiFilePath: 'build/ITSecScore.xpi'
         timeoutMs: 800000
         jwtIssuer: ${{ secrets.MOZILLA_ISSUER }}
         jwtSecret: ${{ secrets.MOZILLA_SECRET }}
@@ -44,7 +44,7 @@ jobs:
     # Create a release
     - uses: meeDamian/github-release@v1.0.0
       with:
-        files: build/ITSecScore.signed.xpi
+        files: build/ITSecScore.xpi
         tag: ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
         gzip: false
