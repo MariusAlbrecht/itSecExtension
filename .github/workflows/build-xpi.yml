@@ -9,19 +9,29 @@ jobs:
   build-sign-extension:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3  # Aktualisiert auf die neueste Version
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Setzt Node.js auf eine unterstützte Version
 
     # Packen der Erweiterung
     - uses: cardinalby/webext-buildtools-pack-extension-dir-action@v1
       with:
         extensionDir: './'
-        zipFilePath: 'build/extension.zip'
+        zipFilePath: 'build/ITSecScore.zip'
 
     # Signieren der Erweiterung
     - uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
       with:
-        zipFilePath: 'build/extension.zip'
-        xpiFilePath: 'build/extension.signed.xpi'
+        zipFilePath: 'build/ITSecScore.zip'
+        xpiFilePath: 'build/ITSecScore.signed.xpi'
         jwtIssuer: ${{ secrets.MOZILLA_ISSUER }}
         jwtSecret: ${{ secrets.MOZILLA_SECRET }}
 
+    # Hochladen der .xpi-Datei als Artifact
+    - uses: actions/upload-artifact@v3  # Aktualisiert auf die neueste Version
+      with:
+        name: signed-extension
+        path: build/ITSecScore.signed.xpi
