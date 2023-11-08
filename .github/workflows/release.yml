@@ -33,7 +33,7 @@ jobs:
       with:
         zipFilePath: 'build/ITSecScore.zip'
         xpiFilePath: 'build/ITSecScore.signed.xpi'
-        timeoutMs: 500000
+        timeoutMs: 800000
         jwtIssuer: ${{ secrets.MOZILLA_ISSUER }}
         jwtSecret: ${{ secrets.MOZILLA_SECRET }}
 
