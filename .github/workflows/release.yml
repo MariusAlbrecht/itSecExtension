@@ -47,3 +47,4 @@ jobs:
         files: build/ITSecScore.signed.xpi
         tag: ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
+        gzip: false
