@@ -41,14 +41,13 @@ jobs:
     - name: Rename XPI file with version and short commit hash
       run: |
         VERSION=${GITHUB_REF#refs/tags/v}
-        SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c 1-8)
-        mv build/ITSecScore.xpi build/ITSecScore-${VERSION}-${SHORT_SHA}.xpi
+        mv build/ITSecScore.xpi build/ITSecScore-${VERSION}.xpi
       shell: bash
 
     # Create a release
     - uses: meeDamian/github-release@v1.0.0
       with:
-        files: build/ITSecScore-${VERSION}-${SHORT_SHA}.xpi
+        files: build/ITSecScore-${VERSION}.xpi
         tag: ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
         gzip: false
