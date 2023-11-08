@@ -19,14 +19,8 @@ jobs:
         jq --arg ver "$VERSION" '.version=$ver' src/manifest.json > src/temp.json && mv src/temp.json src/manifest.json
       shell: bash
 
-    - name: Pack Extension Directory
-      uses: cardinalby/webext-buildtools-pack-extension-dir-action@v1
-      with:
-        extensionDir: './src'
-        zipFilePath: 'build/ITSecScore-unsigned.zip'
-
     - name: Upload Unsigned Extension as Artifact
       uses: actions/upload-artifact@v3
       with:
         name: unsigned-extension
-        path: build/ITSecScore-unsigned.zip
+        path: ./src
