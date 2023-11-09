@@ -12,5 +12,11 @@
                 "scores.js"
             ]
         }
-    ]
+    ],
+    "permissions": [
+        "storage"
+    ],
+    "options_ui": {
+        "page": "options.html"
+    }
 }
