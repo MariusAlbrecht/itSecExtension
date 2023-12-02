@@ -11,6 +11,8 @@ var score
 for (var i = 0, row; row = table.rows[i]; i++) {
     score = 0
     for (var j = 2, cell; cell = row.cells[j]; j++) {
+        if (cell.title === "") continue
+
         score += parseInt(cell.title.split(".")[0])
     }
     var elem = document.createElement("td");
