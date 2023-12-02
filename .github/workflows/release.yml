@@ -1,0 +1,46 @@
+name: Build and Sign Firefox Extension
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build-sign-extension:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3  # Aktualisiert auf die neueste Version
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Setzt Node.js auf eine unterstützte Version
+
+    - name: Update version in manifest.json
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        jq --arg ver "$VERSION" '.version=$ver' src/manifest.json > src/temp.json && mv src/temp.json src/manifest.json
+      shell: bash
+
+    # Packen der Erweiterung
+    - uses: cardinalby/webext-buildtools-pack-extension-dir-action@v1
+      with:
+        extensionDir: './src'
+        zipFilePath: 'build/ITSecScore.zip'
+
+    # Signieren der Erweiterung
+    - uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
+      with:
+        zipFilePath: 'build/ITSecScore.zip'
+        xpiFilePath: 'build/ITSecScore.xpi'
+        timeoutMs: 800000
+        jwtIssuer: ${{ secrets.MOZILLA_ISSUER }}
+        jwtSecret: ${{ secrets.MOZILLA_SECRET }}
+
+    # Create a release
+    - uses: meeDamian/github-release@v1.0.0
+      with:
+        files: build/ITSecScore.xpi
+        tag: ${{ github.ref_name }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        gzip: false
