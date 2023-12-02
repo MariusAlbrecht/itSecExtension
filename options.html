@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <div style="width:100%; display: flex; justify-content: center;">
+        <form style="max-width: 80%;">
+            <fieldset>
+                <legend>Preferences:</legend>
+                <div>
+                    <input type="checkbox" id="IgnoreFirst4" name="IgnoreFirst4" onmouseover="this.style.cursor='pointer'" />
+                    <label for="IgnoreFirst4">Ingore first four exercises</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="ignoreInco" name="ignoreInco" onmouseover="this.style.cursor='pointer'" />
+                    <label for="ignoreInco">ignore incompleted exercises (9999 get added under the hood)</label>
+                </div>
+                <div style="width:100%; display: flex; justify-content: center; margin-top: 3%;">
+                    <button type="submit" style="background-color: transparent; border: solid;"
+                        onmouseover="this.style.cursor='pointer'"">Save</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src=" options.js"></script>
+</body>
+
+</html>
